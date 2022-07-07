@@ -2,6 +2,7 @@
     import type MineObject from "$lib/classes/mine-object";
     import Decimal from "break_infinity.js";
     import * as PIXI from "pixi.js";
+    import game from "$lib/store/gamestore"
     import { onMount } from "svelte";
     
     let canvas: HTMLCanvasElement;
@@ -10,6 +11,13 @@
     $: hp = mineobject?.hp ?? new Decimal(0);
     $: def = mineobject?.def ?? new Decimal(0);
     $: value = mineobject?.value ?? new Decimal(0);
+
+    function damage(){
+        game.update(game => {
+            game.mineObjects.current.damage(new Decimal(10));
+            return game;
+        });
+    }
 
     onMount(() => {
         const w = 256;
@@ -25,11 +33,11 @@
 
                 app.stage.addChild(sprite);
         })
-    })
+    });
 </script>
 
 <div class="w-72 bg-slate-700 rounded-lg text-lg flex flex-col items-center justify-center">
-    <canvas on:click={() => mineobject?.damage(new Decimal(10))} bind:this={canvas} width="256" height="224"></canvas>
+    <canvas class="cursor-pointer" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
     <p>HP {hp}</p>
     <p>DEF {def}</p>
     <p>$ {value}</p>
