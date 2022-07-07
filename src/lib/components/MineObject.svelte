@@ -15,7 +15,7 @@
 
     function damage(){
         game.update(game => {
-            game.mineObjects.current.damage(new Decimal(10));
+            game.mineObjects.current.damage(game.pickaxe.damage);
             return game;
         });
     }
