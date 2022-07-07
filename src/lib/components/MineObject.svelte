@@ -8,6 +8,7 @@
     let canvas: HTMLCanvasElement;
     export let mineobject: MineObject|null = null;
 
+    $: name = mineobject?.name ?? "Unknown";
     $: hp = mineobject?.hp ?? new Decimal(0);
     $: def = mineobject?.def ?? new Decimal(0);
     $: value = mineobject?.value ?? new Decimal(0);
@@ -36,10 +37,11 @@
     });
 </script>
 
-<div class="w-72 bg-slate-700 rounded-lg text-lg flex flex-col items-center justify-center">
+<div class="w-72 text-lg flex flex-col items-center justify-center">
     <canvas class="cursor-pointer" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
-    <p>HP {hp}</p>
-    <p>DEF {def}</p>
-    <p>$ {value}</p>
+    <p class="font-extrabold">{name}</p>
+    <p><span class="text-orange-500 font-extrabold">HP</span> <span class="font-mono">{hp}</span></p>
+    <p><span class="text-gray-700 dark:text-gray-300 font-extrabold">DEF</span> <span class="font-mono">{def}</span></p>
+    <p><span class="text-green-500 font-extrabold">$</span> <span class="font-mono">{value}</span></p>
 </div>
 
