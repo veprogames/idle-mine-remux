@@ -6,8 +6,8 @@ export default class ContentGems{
     upgrades: Object
 
     constructor(){
-        this.amount = new Decimal(0);
-        this.highestGems = new Decimal(0);
+        this.amount = new Decimal(5);
+        this.highestGems = new Decimal(5);
         this.upgrades = {};
     }
 }

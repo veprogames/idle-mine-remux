@@ -15,7 +15,7 @@
 
     function damage(){
         game.update(game => {
-            game.mineObjects.current.damage(game.pickaxe.damage);
+            game.mineObjects.current.damage(game.pickaxe.baseDamage);
             return game;
         });
     }

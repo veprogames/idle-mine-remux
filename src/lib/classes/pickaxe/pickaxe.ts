@@ -1,3 +1,4 @@
+import { generatePickaxe } from "$lib/modules/pickaxe-generator";
 import Decimal from "break_infinity.js"
 
 /** Pickaxes are used to deal Damage to `MineObject`s. */
@@ -15,10 +16,11 @@ export default class Pickaxe{
     }
 
     static craft(){
-        return new Pickaxe("Toy Pickaxe", new Decimal(20), new Decimal(1));
+        return generatePickaxe(new Decimal(1));
     }
 
-    get damage(){
+    /** Base Damage calculated by `power * quality`. Does not include Upgrade effects. */
+    get baseDamage(){
         return this.pow.mul(this.quality);
     }
 }
