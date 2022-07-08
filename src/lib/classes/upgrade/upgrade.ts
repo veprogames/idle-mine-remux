@@ -3,11 +3,11 @@ import game from "$lib/store/gamestore";
 import { get } from "svelte/store";
 
 interface UpgradeDefinition{
-    name: string,
-    description: string,
+    name?: string,
+    description?: string,
     getPrice: ((level: number) => Decimal),
     getEffect: ((level: number) => Decimal),
-    maxLevel: number
+    maxLevel?: number
 }
 
 export enum UpgradeResource{
@@ -32,11 +32,13 @@ export class Upgrade{
     nextLevelEffect: Decimal = new Decimal(0)
 
     constructor({name, description, getPrice, getEffect, maxLevel}: UpgradeDefinition){
-        this.name = name;
-        this.description = description;
+        this.name = name ?? "";
+        this.description = description ?? "";
         this.getPrice = getPrice;
         this.getEffect = getEffect;
         this.maxLevel = maxLevel ?? Infinity;
+
+        this.update();
     }
 
     /** Cache Prices and Effects into class members to save recalculations */
