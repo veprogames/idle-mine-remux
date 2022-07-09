@@ -9,32 +9,34 @@
 
     let screenWidth = 0;
 
+    $: iconPath = `images/upgrades/${icon}`;
     $: price = upgrade?.price ?? new Decimal(0);
     $: isCompact = screenWidth > 1024;
+    $: canBuy = upgrade?.canBuy();
 </script>
 
 <svelte:window bind:innerWidth={screenWidth}></svelte:window>
 
 {#if isCompact}
-    <div on:click={() => upgrade?.buy()} class="upgrade-base upgrade-lg group">
-        <img class="w-14 h-14" alt="UPG" src={icon}/>
-        <span class="absolute right-1 bottom-0 font-bold text-lg">{upgrade?.level}</span>
+    <button on:click={() => upgrade?.buy()} class="relative btn cursor-pointer group" disabled={!canBuy}>
+        <img class="w-14 h-14" alt="UPG" src={iconPath}/>
+        <span class="absolute right-1 bottom-0 font-bold text-lg z-10">{upgrade?.level}</span>
         <!-- Tooltip -->
-        <div class="w-48 absolute top-full translate-y-4 scale-0 p-2 group-hover:scale-100 bg-black rounded-md transition-all">
+        <div class="w-48 absolute top-full translate-y-4 scale-0 p-2 group-hover:scale-100 bg-black rounded-md transition-all z-10">
             <p class="font-semibold uppercase text-lg"><slot name="title">Title</slot></p>
-            <p><slot name="description">Description</slot></p>
+            <p class="normal-case"><slot name="description">Description</slot></p>
             <p class="text-center text-lg"><slot name="resource">$</slot> <span class="font-mono">{price}</span></p>
         </div>
-    </div>
+    </button>
 {:else}
     <div class="upgrade-base upgrade-sm group">
-        <img class="w-14 h-14" alt="UPG" src={icon}/>
+        <img class="w-14 h-14" alt="UPG" src={iconPath}/>
         <div class="flex flex-col flex-grow">
             <p class="font-semibold uppercase text-lg"><slot name="title">Title</slot> Lv. {upgrade?.level}</p>
             <p><slot name="description">Description</slot></p>
         </div>
         <div class="m-1 w-full">
-            <Button full={true} on:click={() => upgrade?.buy()}><slot name="resource">$</slot> {price}</Button>
+            <Button disabled={!canBuy} full={true} on:click={() => upgrade?.buy()}><slot name="resource">$</slot> {price}</Button>
         </div>
     </div>
 {/if}
@@ -45,7 +47,7 @@
     }
 
     .upgrade-lg{
-        @apply w-16 cursor-pointer bg-blue-400 hover:bg-blue-500 active:bg-blue-600 border-b-4 border-b-blue-800;
+        @apply w-16 cursor-pointer;
     }
 
     .upgrade-sm{

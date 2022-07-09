@@ -25,7 +25,7 @@
         const h = 224;
         const app = new PIXI.Application({width: w, height: h, view: canvas, backgroundAlpha: 0});
         app.loader
-            .add("stone", "images/mineobjects/default.png")
+            .add("stone", "images/mineobjects/dirt_temp.png") //temporary sprite
             .load((loader, resources) => {
                 const sprite = new PIXI.Sprite(resources.stone.texture);
                 sprite.anchor.set(0.5);
@@ -38,7 +38,7 @@
 </script>
 
 <div class="w-72 text-lg flex flex-col items-center justify-center">
-    <canvas class="cursor-pointer" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
+    <canvas class="cursor-pointer active:scale-x-105 active:scale-y-95 transition-transform" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
     <p class="font-extrabold">{name}</p>
     <p><span class="text-orange-500 font-extrabold">HP</span> <span class="font-mono">{hp}</span></p>
     <p><span class="text-gray-700 dark:text-gray-300 font-extrabold">DEF</span> <span class="font-mono">{def}</span></p>

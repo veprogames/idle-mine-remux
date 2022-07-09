@@ -14,9 +14,9 @@ import Upgrade from "$lib/components/upgrade/Upgrade.svelte";
 <PickaxeCrafter/>
 
 <div>
-    <Upgrade upgrade={upg}>
+    <Upgrade upgrade={upg} icon="blacksmith.png">
         <span slot="title">Blacksmith</span>
-        <span slot="description">Get <span class="text-green-500">more</span> Blacksmith</span>
+        <span slot="description">Increase the minimum <span class="text-green-500">Power</span> of Pickaxes</span>
         <span slot="resource"><span class="text-green-300 font-extrabold">$</span></span>
     </Upgrade>
 </div>
