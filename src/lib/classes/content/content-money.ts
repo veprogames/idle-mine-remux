@@ -2,13 +2,13 @@ import Decimal from "break_infinity.js"
 import { MoneyUpgrade, Upgrade } from "../upgrade/upgrade";
 
 export default class ContentMoney{
-    amount: Decimal
-    highestMoney: Decimal
+    private _amount: Decimal
+    private _highestMoney: Decimal
     upgrades: {blacksmith: Upgrade}
 
     constructor(){
-        this.amount = new Decimal(0);
-        this.highestMoney = new Decimal(0);
+        this._amount = new Decimal(0);
+        this._highestMoney = new Decimal(0);
         this.upgrades = {
             blacksmith: new MoneyUpgrade({
                 getPrice: level => Decimal.pow(1.2, level).mul(30).add(level * 75),
@@ -17,8 +17,16 @@ export default class ContentMoney{
         };
     }
 
-    add(amount: Decimal){
-        this.amount = this.amount.add(amount);
-        this.highestMoney = Decimal.max(this.amount, this.highestMoney);
+    get highestMoney(){
+        return this._highestMoney;
+    }
+
+    get amount(){
+        return this._amount;
+    }
+
+    set amount(amount: Decimal){
+        this._amount = amount;
+        this._highestMoney = Decimal.max(amount, this._highestMoney);
     }
 }
