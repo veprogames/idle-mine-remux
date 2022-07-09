@@ -17,6 +17,8 @@ import Button from "./ui/Button.svelte";
     $: previousAvailable = $game.mineObjects.isPreviousAvailable;
     $: nextAvailable = $game.mineObjects.isNextAvailable;
 
+    $: hpColor = `hsl(${120 * hp.div(mineobject?.maxHp ?? new Decimal(1)).toNumber()}deg, 90%, 75%)`;
+
     function damage(){
         game.update(game => {
             game.mineObjects.current?.damage(game.pickaxe.clickDamage);
@@ -62,7 +64,7 @@ import Button from "./ui/Button.svelte";
         <button class="btn" class:invisible={!nextAvailable} on:click={next}>→</button>
     </div>
     <p class="font-extrabold">{name}</p>
-    <p><span class="text-orange-500 font-extrabold">HP</span> <span class="font-mono">{hp}</span></p>
+    <p><span class="text-orange-500 font-extrabold">HP</span> <span style:color={hpColor} class="font-mono">{hp}</span></p>
     <p><span class="text-gray-700 dark:text-gray-300 font-extrabold">DEF</span> <span class="font-mono">{def}</span></p>
     <p><span class="text-green-500 font-extrabold">$</span> <span class="font-mono">{value}</span></p>
 </div>

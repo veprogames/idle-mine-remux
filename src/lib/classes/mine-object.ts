@@ -32,6 +32,9 @@ export default class MineObject{
     onDestroy(){
         game.update(g => {
             g.money.amount = g.money.amount.add(this.value);
+            if(g.mineObjects.currentId == g.mineObjects.highestId){
+                g.mineObjects.highestId++;
+            }
             return g;
         });
     }

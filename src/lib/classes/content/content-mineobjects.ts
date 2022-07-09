@@ -18,7 +18,7 @@ export default class ContentMineObjects {
         };
 
         this.currentId = 0;
-        this.highestId = 2;
+        this.highestId = 0;
 
         this.current = this.objects[this.currentId];
     }

@@ -46,7 +46,7 @@ export class Upgrade{
     }
 
     set level(level: number){
-        this.level = level;
+        this._level = level;
         this.update();
     }
 
@@ -83,7 +83,6 @@ export class Upgrade{
         if(this.canBuy){
             this.subPriceFromResource();
             this.level++;
-            this.update();
         }
     }
 }
