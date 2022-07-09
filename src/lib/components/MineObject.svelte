@@ -19,7 +19,7 @@ import Button from "./ui/Button.svelte";
 
     function damage(){
         game.update(game => {
-            game.mineObjects.current?.damage(game.pickaxe.baseDamage);
+            game.mineObjects.current?.damage(game.pickaxe.clickDamage);
             return game;
         });
     }

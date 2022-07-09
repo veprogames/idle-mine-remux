@@ -60,10 +60,12 @@ export class Upgrade{
         });
     }
 
+    /** Does the Player have enough Resources? (Money, Gems, etc.) */
     canAfford(){
         return this.getResourceAmount().gte(this.price);
     }
 
+    /** Does the Player have enough Resources **and** are all other requirements fulfilled? */
     canBuy(){
         return this.canAfford() && this.level < this.maxLevel;
     }
