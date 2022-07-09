@@ -31,7 +31,7 @@ export default class MineObject{
     
     onDestroy(){
         game.update(g => {
-            g.money.amount = g.money.amount.add(this.value);
+            g.money.add(this.value);
             return g;
         });
     }

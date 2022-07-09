@@ -10,4 +10,9 @@ export default class ContentGems{
         this.highestGems = new Decimal(5);
         this.upgrades = {};
     }
+
+    add(amount: Decimal){
+        this.amount = this.amount.add(amount);
+        this.highestGems = Decimal.max(this.amount, this.highestGems);
+    }
 }

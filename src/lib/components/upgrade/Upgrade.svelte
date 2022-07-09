@@ -12,7 +12,7 @@
     $: iconPath = `images/upgrades/${icon}`;
     $: price = upgrade?.price ?? new Decimal(0);
     $: isCompact = screenWidth > 1024;
-    $: canBuy = upgrade?.canBuy();
+    $: canBuy = upgrade?.canBuy;
 </script>
 
 <svelte:window bind:innerWidth={screenWidth}></svelte:window>

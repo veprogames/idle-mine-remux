@@ -16,4 +16,9 @@ export default class ContentMoney{
             })
         };
     }
+
+    add(amount: Decimal){
+        this.amount = this.amount.add(amount);
+        this.highestMoney = Decimal.max(this.amount, this.highestMoney);
+    }
 }

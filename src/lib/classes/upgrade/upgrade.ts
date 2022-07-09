@@ -61,17 +61,17 @@ export class Upgrade{
     }
 
     /** Does the Player have enough Resources? (Money, Gems, etc.) */
-    canAfford(){
+    get canAfford(){
         return this.getResourceAmount().gte(this.price);
     }
 
     /** Does the Player have enough Resources **and** are all other requirements fulfilled? */
-    canBuy(){
-        return this.canAfford() && this.level < this.maxLevel;
+    get canBuy(){
+        return this.canAfford && this.level < this.maxLevel;
     }
 
     buy(){
-        if(this.canBuy()){
+        if(this.canBuy){
             this.subPriceFromResource();
             this.level++;
             this.update();
