@@ -22,7 +22,7 @@ export class Upgrade{
     /** return the `price` for a given `upgrade level` */
     getEffect: ((level: number) => Decimal)
 
-    level: number = 0
+    private _level: number = 0
     maxLevel: number = Infinity
     resource: UpgradeResource = UpgradeResource.NONE
 
@@ -38,6 +38,15 @@ export class Upgrade{
         this.getEffect = getEffect;
         this.maxLevel = maxLevel ?? Infinity;
 
+        this.update();
+    }
+
+    get level(){
+        return this._level;
+    }
+
+    set level(level: number){
+        this.level = level;
         this.update();
     }
 
