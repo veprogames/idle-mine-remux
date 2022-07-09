@@ -9,14 +9,19 @@ import Upgrade from "$lib/components/upgrade/Upgrade.svelte";
     $: upg = $game.money.upgrades.blacksmith;
 </script>
 
-<MineObject mineobject={mineObj}></MineObject>
+<div class="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-y-8">
+    <MineObject mineobject={mineObj}></MineObject>
 
-<PickaxeCrafter/>
+    
+    <div class="p-4">
+        <Upgrade upgrade={upg} icon="blacksmith.png">
+            <span slot="title">Blacksmith</span>
+            <span slot="description">Increase the minimum <span class="text-green-500">Power</span> of Pickaxes</span>
+            <span slot="resource"><span class="text-green-300 font-extrabold">$</span></span>
+        </Upgrade>
+    </div>
 
-<div>
-    <Upgrade upgrade={upg} icon="blacksmith.png">
-        <span slot="title">Blacksmith</span>
-        <span slot="description">Increase the minimum <span class="text-green-500">Power</span> of Pickaxes</span>
-        <span slot="resource"><span class="text-green-300 font-extrabold">$</span></span>
-    </Upgrade>
+    <div>Pickaxe</div>
+    
+    <PickaxeCrafter/>
 </div>

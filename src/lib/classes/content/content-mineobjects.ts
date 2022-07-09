@@ -18,8 +18,33 @@ export default class ContentMineObjects {
         };
 
         this.currentId = 0;
-        this.highestId = 0;
+        this.highestId = 2;
 
         this.current = this.objects[this.currentId];
+    }
+
+    setCurrent(id: number){
+        this.currentId = id;
+        this.current = this.objects[this.currentId];
+    }
+
+    get isNextAvailable(){
+        return this.highestId > this.currentId;
+    }
+
+    get isPreviousAvailable(){
+        return this.currentId > 0;
+    }
+
+    next(){
+        if(this.isNextAvailable){
+            this.setCurrent(this.currentId + 1);
+        }
+    }
+    
+    previous(){
+        if(this.isPreviousAvailable){
+            this.setCurrent(this.currentId - 1);
+        }
     }
 }
