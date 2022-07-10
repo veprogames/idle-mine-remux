@@ -1,0 +1,20 @@
+{
+	"frames": {
+		"layer1": {
+			"frame": { "x": 0, "y": 0, "w": 256, "h": 224 },
+			"sourceSize": {"w": 256, "h": 224 },
+			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
+		},
+        "layer2": {
+			"frame": { "x": 256, "y": 0, "w": 256, "h": 224 },
+			"sourceSize": {"w": 256, "h": 224 },
+			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
+		}
+	},
+	"meta": {
+		"image": "bone.png",
+		"format": "RGBA8888",
+		"size": { "w": 128, "h": 32 },
+		"scale": 1
+	}
+}

@@ -12,6 +12,9 @@
       PIXI.Loader.shared
         .add("default", "images/mineobjects/default.json")
         .add("dirty", "images/mineobjects/dirty.json")
+        .add("paper", "images/mineobjects/paper.json")
+        .add("salt", "images/mineobjects/salt.json")
+        .add("bone", "images/mineobjects/bone.json")
         .load((loader, resources) => {
           game.update(g => {
             g.mineObjects.createSpriteCache(resources);
