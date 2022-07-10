@@ -8,7 +8,7 @@
     
     let canvas: HTMLCanvasElement;
     export let mineobject: MineObject|null = null;
-    const container: MineObjectContainer = new MineObjectContainer(mineobject?.visuals ?? {sprites: [], colors: []});
+    const container: MineObjectContainer = new MineObjectContainer(mineobject?.visuals ?? MineObject.NO_VISUALS);
 
     $: name = mineobject?.name ?? "Unknown";
     $: hp = mineobject?.hp ?? new Decimal(0);
