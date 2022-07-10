@@ -1,13 +1,14 @@
 <script lang="ts">
-    import type MineObject from "$lib/classes/mine-object";
+    import MineObject from "$lib/classes/mine-object";
     import Decimal from "break_infinity.js";
     import * as PIXI from "pixi.js";
     import game from "$lib/store/gamestore"
     import { onMount } from "svelte";
-import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
+    import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
     
     let canvas: HTMLCanvasElement;
     export let mineobject: MineObject|null = null;
+    const container: MineObjectContainer = new MineObjectContainer(mineobject?.visuals ?? {sprites: [], colors: []});
 
     $: name = mineobject?.name ?? "Unknown";
     $: hp = mineobject?.hp ?? new Decimal(0);
@@ -29,6 +30,7 @@ import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
     function previous(){
         game.update(game => {
             game.mineObjects.previous();
+            container.visuals = game.mineObjects.current.visuals ?? MineObject.NO_VISUALS;
             return game;
         });
     }
@@ -36,6 +38,7 @@ import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
     function next(){
         game.update(game => {
             game.mineObjects.next();
+            container.visuals = game.mineObjects.current.visuals ?? MineObject.NO_VISUALS;
             return game;
         });
     }
@@ -44,15 +47,6 @@ import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
         const w = 256;
         const h = 224;
         const app = new PIXI.Application({width: w, height: h, view: canvas, backgroundAlpha: 0});
-
-        const sprites = $game.mineObjects.spriteCache;
-        
-        /*const sprite = sprites.default[1];
-        sprite.anchor.set(0.5);
-        sprite.position.set(w / 2, h / 2);
-        sprite.tint = 0xffabcd;*/
-
-        const container = new MineObjectContainer(sprites.default);
 
         app.stage.addChild(container);
     });

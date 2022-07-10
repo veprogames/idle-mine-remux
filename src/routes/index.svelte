@@ -11,7 +11,6 @@ import Upgrade from "$lib/components/upgrade/Upgrade.svelte";
 
 <div class="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-y-8">
     <MineObject mineobject={mineObj}></MineObject>
-
     
     <div class="p-4">
         <Upgrade upgrade={upg} icon="blacksmith.png">

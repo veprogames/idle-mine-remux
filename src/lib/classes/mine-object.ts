@@ -1,6 +1,14 @@
 // @ts-ignore
 import Decimal from "break_infinity.js"
 import game from "$lib/store/gamestore"
+import type { Sprite } from "pixi.js"
+
+/** The Options how a MineObject should appear visually (textures, colors) */
+export interface VisualDefintion{
+    sprites: Array<Sprite>,
+    /** e. g. `0xff0000` -> `red` */
+    colors: Array<number>
+}
 
 export default class MineObject{
     name: String
@@ -8,17 +16,26 @@ export default class MineObject{
     maxHp: Decimal
     def: Decimal
     value: Decimal
+    visuals: VisualDefintion
 
-    constructor(name: String, hp: Decimal, def: Decimal, value: Decimal){
+    constructor(name: String, hp: Decimal, def: Decimal, value: Decimal, visuals: VisualDefintion){
         this.name = name;
         this.hp = hp;
         this.maxHp = new Decimal(this.hp);
         this.def = def;
         this.value = value;
+        this.visuals = visuals;
+    }
+
+    static get NO_VISUALS(): VisualDefintion{
+        return {
+            sprites: [],
+            colors: []
+        };
     }
 
     static clone(from: MineObject){
-        return new MineObject(from.name, from.hp, from.def, from.value);
+        return new MineObject(from.name, from.hp, from.def, from.value, from.visuals);
     }
 
     damage(dmg: Decimal){

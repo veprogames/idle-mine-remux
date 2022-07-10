@@ -32,12 +32,8 @@
   <title>Idle Mine: Remux</title>
 </svelte:head>
 
-{#if loaded}
-  <GameHeader/>
-  <slot />
-{:else}
-  <div class="w-screen h-screen flex justify-center items-center text-4xl">Loading...</div>
-{/if}
+<GameHeader/>
+<slot />
 
 <style>
   :global(.btn){
