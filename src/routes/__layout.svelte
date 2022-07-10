@@ -4,7 +4,6 @@
   import game from "$lib/store/gamestore"
   import { onMount } from "svelte";
   import "../app.css";
-import { resolveModuleName } from "typescript";
 
   let loaded = false;
 
@@ -24,7 +23,6 @@ import { resolveModuleName } from "typescript";
 
   onMount(async () => {
     const res = await loadTextures();
-    console.log(res);
     loaded = true;
   });
   
