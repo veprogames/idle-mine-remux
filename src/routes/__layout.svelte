@@ -4,18 +4,28 @@
   import game from "$lib/store/gamestore"
   import { onMount } from "svelte";
   import "../app.css";
+import { resolveModuleName } from "typescript";
 
   let loaded = false;
 
-  onMount(() => {
-    PIXI.Loader.shared.add("default", "images/mineobjects/default.json")
-      .load((loader, resources) => {
-        game.update(g => {
-          g.mineObjects.createSpriteCache(resources);
-          return g;
+  function loadTextures(){
+    return new Promise((resolve, reject) => {
+      PIXI.Loader.shared
+        .add("default", "images/mineobjects/default.json")
+        .load((loader, resources) => {
+          game.update(g => {
+            g.mineObjects.createSpriteCache(resources);
+            return g;
+          });
+          resolve(resources);
         });
-        loaded = true;
-      });
+    });
+  }
+
+  onMount(async () => {
+    const res = await loadTextures();
+    console.log(res);
+    loaded = true;
   });
   
 </script>

@@ -46,7 +46,7 @@ import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
         const app = new PIXI.Application({width: w, height: h, view: canvas, backgroundAlpha: 0});
 
         const sprites = $game.mineObjects.spriteCache;
-        console.log(sprites.default);
+        
         /*const sprite = sprites.default[1];
         sprite.anchor.set(0.5);
         sprite.position.set(w / 2, h / 2);
