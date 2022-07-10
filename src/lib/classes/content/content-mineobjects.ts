@@ -1,5 +1,4 @@
 import Decimal from "break_infinity.js"
-import type { PixelExtractOptions, Texture } from "pixi.js";
 import MineObject from "../mine-object";
 import * as PIXI from "pixi.js";
 
@@ -9,6 +8,7 @@ interface MineObjectsDefinition{
 
 interface SpriteCache{
     default: Array<PIXI.Sprite>,
+    dirty: Array<PIXI.Sprite>,
     [key: string]: Array<PIXI.Sprite>
 };
 
@@ -19,12 +19,13 @@ export default class ContentMineObjects {
     current: MineObject
 
     spriteCache: SpriteCache = {
-        default: [new PIXI.Sprite(), new PIXI.Sprite()]
+        default: [new PIXI.Sprite(), new PIXI.Sprite()],
+        dirty: [new PIXI.Sprite(), new PIXI.Sprite()]
     };
 
     constructor(){
         this.objects = {
-            0: new MineObject("Dirt", new Decimal(100), new Decimal(0), new Decimal(2), {sprites: this.spriteCache.default, colors: [0x400000, 0x700000]}),
+            0: new MineObject("Dirt", new Decimal(100), new Decimal(0), new Decimal(2), {sprites: this.spriteCache.dirty, colors: [0x700000, 0x400000]}),
             1: new MineObject("Paper", new Decimal(400), new Decimal(3), new Decimal(10), {sprites: this.spriteCache.default, colors: [0xffffff, 0xffffff]})
         };
 
@@ -36,14 +37,13 @@ export default class ContentMineObjects {
 
     createSpriteCache(resources: PIXI.utils.Dict<PIXI.LoaderResource>){
         const tex = Object.values(resources.default?.textures ?? {});
+        const texDirty = Object.values(resources.dirty?.textures ?? {});
         for(let i = 0; i < tex.length; i++){
             this.spriteCache.default[i].texture = tex[i];
         }
-        
-        /*this.spriteCache = {
-            default: Object.values(resources.default?.textures ?? {})
-                .map(texture => new PIXI.Sprite(texture))
-        }*/
+        for(let i = 0; i < texDirty.length; i++){
+            this.spriteCache.dirty[i].texture = texDirty[i];
+        }
     }
 
     setCurrent(id: number){

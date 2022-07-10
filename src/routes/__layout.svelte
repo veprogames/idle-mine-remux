@@ -11,6 +11,7 @@
     return new Promise((resolve, reject) => {
       PIXI.Loader.shared
         .add("default", "images/mineobjects/default.json")
+        .add("dirty", "images/mineobjects/dirty.json")
         .load((loader, resources) => {
           game.update(g => {
             g.mineObjects.createSpriteCache(resources);
