@@ -1,8 +1,15 @@
 import Decimal from "break_infinity.js"
-import MineObject from "../mine-object"
+import type { PixelExtractOptions, Texture } from "pixi.js";
+import MineObject from "../mine-object";
+import * as PIXI from "pixi.js";
 
 interface MineObjectsDefinition{
     [key: number]: MineObject
+};
+
+interface SpriteCache{
+    default: Array<PIXI.Sprite>,
+    [key: string]: Array<PIXI.Sprite>
 };
 
 export default class ContentMineObjects {
@@ -10,6 +17,10 @@ export default class ContentMineObjects {
     currentId: number
     highestId: number
     current: MineObject
+
+    spriteCache: SpriteCache = {
+        default: []
+    };
 
     constructor(){
         this.objects = {
@@ -21,6 +32,13 @@ export default class ContentMineObjects {
         this.highestId = 0;
 
         this.current = this.objects[this.currentId];
+    }
+
+    createSpriteCache(resources: PIXI.utils.Dict<PIXI.LoaderResource>){
+        this.spriteCache = {
+            default: Object.values(resources.default?.textures ?? {})
+                .map(texture => new PIXI.Sprite(texture))
+        }
     }
 
     setCurrent(id: number){

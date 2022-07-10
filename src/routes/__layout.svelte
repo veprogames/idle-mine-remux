@@ -1,16 +1,35 @@
 <script>
-import GameHeader from "$lib/components/GameHeader.svelte";
-
+  import GameHeader from "$lib/components/GameHeader.svelte";
+  import * as PIXI from "pixi.js";
+  import game from "$lib/store/gamestore"
+  import { onMount } from "svelte";
   import "../app.css";
+
+  let loaded = false;
+
+  onMount(() => {
+    PIXI.Loader.shared.add("default", "images/mineobjects/default.json")
+      .load((loader, resources) => {
+        game.update(g => {
+          g.mineObjects.createSpriteCache(resources);
+          return g;
+        });
+        loaded = true;
+      });
+  });
+  
 </script>
 
 <svelte:head>
   <title>Idle Mine: Remux</title>
 </svelte:head>
 
-<GameHeader/>
-
-<slot />
+{#if loaded}
+  <GameHeader/>
+  <slot />
+{:else}
+  <div class="w-screen h-screen flex justify-center items-center text-4xl">Loading...</div>
+{/if}
 
 <style>
   :global(.btn){

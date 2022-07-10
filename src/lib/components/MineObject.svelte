@@ -4,7 +4,7 @@
     import * as PIXI from "pixi.js";
     import game from "$lib/store/gamestore"
     import { onMount } from "svelte";
-import Button from "./ui/Button.svelte";
+import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
     
     let canvas: HTMLCanvasElement;
     export let mineobject: MineObject|null = null;
@@ -44,16 +44,17 @@ import Button from "./ui/Button.svelte";
         const w = 256;
         const h = 224;
         const app = new PIXI.Application({width: w, height: h, view: canvas, backgroundAlpha: 0});
-        app.loader
-            .add("stone", "images/mineobjects/dirt_temp.png") //temporary sprite
-            .load((loader, resources) => {
-                const sprite = new PIXI.Sprite(resources.stone.texture);
-                sprite.anchor.set(0.5);
-                sprite.position.set(w / 2, h / 2);
-                sprite.tint = 0xff0000;
 
-                app.stage.addChild(sprite);
-        })
+        const sprites = $game.mineObjects.spriteCache;
+        console.log(sprites.default);
+        /*const sprite = sprites.default[1];
+        sprite.anchor.set(0.5);
+        sprite.position.set(w / 2, h / 2);
+        sprite.tint = 0xffabcd;*/
+
+        const container = new MineObjectContainer(sprites.default);
+
+        app.stage.addChild(container);
     });
 </script>
 
