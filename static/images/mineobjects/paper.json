@@ -1,21 +1,21 @@
 {
 	"frames": {
-		"layer1": {
+		"paper1": {
 			"frame": { "x": 0, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		},
-        "layer2": {
+        "paper2": {
 			"frame": { "x": 256, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		},
-        "layer3": {
+        "paper3": {
 			"frame": { "x": 512, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		},
-        "layer4": {
+        "paper4": {
 			"frame": { "x": 768, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }

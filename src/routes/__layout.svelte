@@ -19,6 +19,11 @@
       addSafe("paper", "images/mineobjects/paper.json");
       addSafe("salt", "images/mineobjects/salt.json");
       addSafe("bone", "images/mineobjects/bone.json");
+      addSafe("orb", "images/mineobjects/orb.json");
+      addSafe("ingot", "images/mineobjects/ingot.json");
+      addSafe("gem", "images/mineobjects/gem.json");
+      addSafe("cursed", "images/mineobjects/cursed.json");
+      addSafe("essence", "images/mineobjects/essence.json");
       PIXI.Loader.shared.load((loader, resources) => {
           game.update(g => {
             g.mineObjects.createSpriteCache(resources);

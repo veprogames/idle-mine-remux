@@ -1,11 +1,11 @@
 {
 	"frames": {
-		"layer1": {
+		"salt1": {
 			"frame": { "x": 0, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		},
-        "layer2": {
+        "salt2": {
 			"frame": { "x": 256, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }

@@ -1,7 +1,7 @@
 import Decimal from "break_infinity.js"
 import MineObject from "../mine-object";
-import * as PIXI from "pixi.js";
-import type { LoaderResource } from "pixi.js";
+import type * as PIXI from "pixi.js";
+import { Sprite, type LoaderResource } from "pixi.js";
 
 interface MineObjectsDefinition{
     [key: number]: MineObject
@@ -13,6 +13,11 @@ interface SpriteCache{
     paper: Array<PIXI.Sprite>,
     salt: Array<PIXI.Sprite>,
     bone: Array<PIXI.Sprite>,
+    orb: Array<PIXI.Sprite>,
+    ingot: Array<PIXI.Sprite>,
+    gem: Array<PIXI.Sprite>,
+    cursed: Array<PIXI.Sprite>,
+    essence: Array<PIXI.Sprite>,
     [key: string]: Array<PIXI.Sprite>
 };
 
@@ -23,11 +28,16 @@ export default class ContentMineObjects {
     current: MineObject
 
     spriteCache: SpriteCache = {
-        default: [new PIXI.Sprite(), new PIXI.Sprite()],
-        dirty: [new PIXI.Sprite(), new PIXI.Sprite()],
-        paper: [new PIXI.Sprite(), new PIXI.Sprite(), new PIXI.Sprite(), new PIXI.Sprite()],
-        salt: [new PIXI.Sprite(), new PIXI.Sprite()],
-        bone: [new PIXI.Sprite(), new PIXI.Sprite()]
+        default: this.emptySprites(2),
+        dirty: this.emptySprites(2),
+        paper: this.emptySprites(4),
+        salt: this.emptySprites(2),
+        bone: this.emptySprites(2),
+        orb: this.emptySprites(3),
+        ingot: this.emptySprites(2),
+        gem: this.emptySprites(2),
+        cursed: this.emptySprites(1),
+        essence: this.emptySprites(1)
     };
 
     constructor(){
@@ -47,12 +57,16 @@ export default class ContentMineObjects {
     createSpriteCache(resources: PIXI.utils.Dict<PIXI.LoaderResource>){
         const texArray = (obj: LoaderResource|undefined) => Object.values(obj?.textures ?? {});
 
-        for(const k of ["default", "dirty", "paper", "salt", "bone"]){
+        for(const k of ["default", "dirty", "paper", "salt", "bone", "orb", "ingot", "gem", "cursed", "essence"]){
             const tex = texArray(resources[k]);
             for(let i = 0; i < tex.length; i++){
                 this.spriteCache[k][i].texture = tex[i];
             }
         }
+    }
+
+    private emptySprites(amount: number){
+        return new Array(amount).fill(0).map(v => new Sprite());
     }
 
     setCurrent(id: number){

@@ -1,18 +1,18 @@
 {
 	"frames": {
-		"dirty1": {
+		"ingot1": {
 			"frame": { "x": 0, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		},
-        "dirty2": {
+        "ingot2": {
 			"frame": { "x": 256, "y": 0, "w": 256, "h": 224 },
 			"sourceSize": {"w": 256, "h": 224 },
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 224 }
 		}
 	},
 	"meta": {
-		"image": "dirty.png",
+		"image": "ingot.png",
 		"format": "RGBA8888",
 		"size": { "w": 128, "h": 32 },
 		"scale": 1
