@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import GameHeader from "$lib/components/GameHeader.svelte";
   import * as PIXI from "pixi.js";
   import game from "$lib/store/gamestore"
@@ -8,14 +8,20 @@
   let loaded = false;
 
   function loadTextures(){
+    const addSafe = (name: string, url: string) => {
+      if(PIXI.Loader.shared.resources[name] === undefined && PIXI.utils.TextureCache[name] === undefined){
+        PIXI.Loader.shared.add(name, url);
+      }
+      return PIXI.Loader.shared;
+    }
+
     return new Promise((resolve, reject) => {
-      PIXI.Loader.shared
-        .add("default", "images/mineobjects/default.json")
-        .add("dirty", "images/mineobjects/dirty.json")
-        .add("paper", "images/mineobjects/paper.json")
-        .add("salt", "images/mineobjects/salt.json")
-        .add("bone", "images/mineobjects/bone.json")
-        .load((loader, resources) => {
+      addSafe("default", "images/mineobjects/default.json");
+      addSafe("dirty", "images/mineobjects/dirty.json");
+      addSafe("paper", "images/mineobjects/paper.json");
+      addSafe("salt", "images/mineobjects/salt.json");
+      addSafe("bone", "images/mineobjects/bone.json");
+      PIXI.Loader.shared.load((loader, resources) => {
           game.update(g => {
             g.mineObjects.createSpriteCache(resources);
             return g;
