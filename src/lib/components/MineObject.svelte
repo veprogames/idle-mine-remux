@@ -55,7 +55,7 @@
 <div class="w-72 text-lg flex flex-col items-center justify-center">
     <div class="flex justify-between items-center">
         <button class="btn" class:invisible={!previousAvailable} on:click={previous}>←</button>
-        <canvas class="w-48 sm:w-auto cursor-pointer active:scale-x-105 active:scale-y-95 transition-transform" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
+        <canvas class="w-48 mx-2 sm:w-auto cursor-pointer active:brightness-90 active:scale-x-105 active:scale-y-95 transition-all" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
         <button class="btn" class:invisible={!nextAvailable} on:click={next}>→</button>
     </div>
     <p class="font-extrabold">{name}</p>

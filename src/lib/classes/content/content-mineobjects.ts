@@ -1,7 +1,6 @@
 import Decimal from "break_infinity.js"
 import MineObject from "../mine-object";
-import type * as PIXI from "pixi.js";
-import { Sprite, type LoaderResource } from "pixi.js";
+import * as PIXI from "pixi.js";
 
 interface MineObjectsDefinition{
     [key: number]: MineObject
@@ -62,7 +61,7 @@ export default class ContentMineObjects {
     }
 
     createSpriteCache(resources: PIXI.utils.Dict<PIXI.LoaderResource>){
-        const texArray = (obj: LoaderResource|undefined) => Object.values(obj?.textures ?? {});
+        const texArray = (obj: PIXI.LoaderResource|undefined) => Object.values(obj?.textures ?? {});
 
         for(const k of ["default", "dirty", "paper", "salt", "bone", "orb", "ingot", "gem", "cursed", "essence"]){
             const tex = texArray(resources[k]);
@@ -73,7 +72,7 @@ export default class ContentMineObjects {
     }
 
     private emptySprites(amount: number){
-        return new Array(amount).fill(0).map(v => new Sprite());
+        return new Array(amount).fill(0).map(v => new PIXI.Sprite());
     }
 
     setCurrent(id: number){
