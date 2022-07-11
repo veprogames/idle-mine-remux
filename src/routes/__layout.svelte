@@ -5,8 +5,6 @@
   import { onMount } from "svelte";
   import "../app.css";
 
-  let loaded = false;
-
   function loadTextures(){
     const addSafe = (name: string, url: string) => {
       if(PIXI.Loader.shared.resources[name] === undefined && PIXI.utils.TextureCache[name] === undefined){
@@ -32,8 +30,7 @@
   }
 
   onMount(async () => {
-    const res = await loadTextures();
-    loaded = true;
+    await loadTextures();
   });
   
 </script>
