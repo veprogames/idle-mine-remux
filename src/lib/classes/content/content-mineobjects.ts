@@ -45,11 +45,18 @@ export default class ContentMineObjects {
             0: new MineObject("Mud", new Decimal(100), new Decimal(0), new Decimal(2), {sprites: this.spriteCache.default, colors: [0x100800, 0x663300]}),
             1: new MineObject("Paper", new Decimal(400), new Decimal(3), new Decimal(10), {sprites: this.spriteCache.paper, colors: [0x000000, 0x00ccff, 0xcc0033, 0xffffff]}),
             2: new MineObject("Salt", new Decimal(700), new Decimal(15), new Decimal(22), {sprites: this.spriteCache.salt, colors: [0x000000, 0xffffff]}),
-            3: new MineObject("Clay", new Decimal(1400), new Decimal(35), new Decimal(50), {sprites: this.spriteCache.default, colors: [0x000000, 0x663333]})
+            3: new MineObject("Clay", new Decimal(1400), new Decimal(35), new Decimal(50), {sprites: this.spriteCache.default, colors: [0x000000, 0x663333]}),
+            4: new MineObject("Rock", new Decimal(2200), new Decimal(90), new Decimal(120), {sprites: this.spriteCache.default, colors: [0x000000, 0x666666]}),
+            5: new MineObject("Coal", new Decimal(4000), new Decimal(200), new Decimal(275), {sprites: this.spriteCache.default, colors: [0x000000, 0x121212]}),
+            6: new MineObject("Bone", new Decimal(7000), new Decimal(380), new Decimal(580), {sprites: this.spriteCache.bone, colors: [0x000000, 0xffff99]}),
+            7: new MineObject("Lead", new Decimal(12400), new Decimal(700), new Decimal(1100), {sprites: this.spriteCache.ingot, colors: [0x242424, 0x000000]}),
+            8: new MineObject("Iron", new Decimal(16000), new Decimal(1140), new Decimal(1850), {sprites: this.spriteCache.ingot, colors: [0x333333, 0x000000]}),
+            9: new MineObject("Copper", new Decimal(25000), new Decimal(1600), new Decimal(3200), {sprites: this.spriteCache.ingot, colors: [0x994400, 0x100500]}),
+            10: new MineObject("Carbonite", new Decimal(40000), new Decimal(2500), new Decimal(5200), {sprites: this.spriteCache.default, colors: [0x000000, 0x262626]})
         };
 
         this.currentId = 0;
-        this.highestId = 0;
+        this.highestId = 10;
 
         this.current = this.objects[this.currentId];
     }
