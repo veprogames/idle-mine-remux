@@ -1,11 +1,11 @@
 // @ts-ignore
 import Decimal from "break_infinity.js"
 import game from "$lib/store/gamestore"
-import type { Sprite } from "pixi.js"
+import { Image } from "canvas"
 
 /** The Options how a MineObject should appear visually (textures, colors) */
 export interface VisualDefintion{
-    sprites: Array<Sprite>,
+    image: Image,
     /** e. g. `0xff0000` -> `red` */
     colors: Array<number>
 }
@@ -29,7 +29,7 @@ export default class MineObject{
 
     static get NO_VISUALS(): VisualDefintion{
         return {
-            sprites: [],
+            image: new Image(),
             colors: []
         };
     }

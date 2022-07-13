@@ -1,14 +1,14 @@
 <script lang="ts">
     import MineObject from "$lib/classes/mine-object";
     import Decimal from "break_infinity.js";
-    import * as PIXI from "pixi.js";
     import game from "$lib/store/gamestore"
+    import type {CanvasRenderingContext2D as NodeCanvasRenderingContext2D} from "canvas";
     import { onMount } from "svelte";
-    import MineObjectContainer from "$lib/classes/pixi/mineobject-container";
+    import { draw } from "$lib/modules/mineobjects";
     
     let canvas: HTMLCanvasElement;
+    let ctx: NodeCanvasRenderingContext2D;
     export let mineobject: MineObject|null = null;
-    const container: MineObjectContainer = new MineObjectContainer(mineobject?.visuals ?? MineObject.NO_VISUALS);
 
     $: name = mineobject?.name ?? "Unknown";
     $: hp = mineobject?.hp ?? new Decimal(0);
@@ -30,7 +30,7 @@
     function previous(){
         game.update(game => {
             game.mineObjects.previous();
-            container.visuals = game.mineObjects.current.visuals ?? MineObject.NO_VISUALS;
+            draw(ctx, mineobject?.visuals ?? MineObject.NO_VISUALS);
             return game;
         });
     }
@@ -38,17 +38,18 @@
     function next(){
         game.update(game => {
             game.mineObjects.next();
-            container.visuals = game.mineObjects.current.visuals ?? MineObject.NO_VISUALS;
+            draw(ctx, mineobject?.visuals ?? MineObject.NO_VISUALS);
             return game;
         });
     }
 
     onMount(() => {
-        const w = 256;
-        const h = 224;
-        const app = new PIXI.Application({width: w, height: h, view: canvas, backgroundAlpha: 0});
+        const context: CanvasRenderingContext2D|null = canvas.getContext("2d");
+        if(context && mineobject){
+            ctx = context as NodeCanvasRenderingContext2D;
 
-        app.stage.addChild(container);
+            draw(ctx, mineobject.visuals);
+        }
     });
 </script>
 

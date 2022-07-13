@@ -1,13 +1,6 @@
 <script lang="ts">
   import GameHeader from "$lib/components/GameHeader.svelte";
-  import { onMount } from "svelte";
   import "../app.css";
-  import { loadTextures } from "$lib/modules/mineobjects";
-
-  onMount(async () => {
-    await loadTextures();
-  });
-  
 </script>
 
 <svelte:head>
