@@ -11,14 +11,14 @@ export interface VisualDefintion{
 }
 
 export default class MineObject{
-    name: String
+    name: string
     hp: Decimal
     maxHp: Decimal
     def: Decimal
     value: Decimal
     visuals: VisualDefintion
 
-    constructor(name: String, hp: Decimal, def: Decimal, value: Decimal, visuals: VisualDefintion){
+    constructor(name: string, hp: Decimal, def: Decimal, value: Decimal, visuals: VisualDefintion){
         this.name = name;
         this.hp = hp;
         this.maxHp = new Decimal(this.hp);
