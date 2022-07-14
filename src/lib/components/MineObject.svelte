@@ -41,7 +41,8 @@
 <div class="w-72 text-lg flex flex-col items-center justify-center">
     <div class="flex justify-between items-center">
         <button class="btn" class:invisible={!previousAvailable} on:click={previous}>←</button>
-        <canvas class="w-48 sm:w-auto cursor-pointer active:scale-x-105 active:scale-y-95 transition-transform" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
+        <div style="width: 256px; height: 224px;" class="flex justify-center items-center uppercase font-semibold cursor-pointer active:scale-90 transition-all" on:click={damage}>No Images. Sorry :(</div>
+        <canvas class="hidden w-48 sm:w-auto cursor-pointer active:scale-x-105 active:scale-y-95 transition-transform" on:click={damage} bind:this={canvas} width="256" height="224"></canvas>
         <button class="btn" class:invisible={!nextAvailable} on:click={next}>→</button>
     </div>
     <p class="font-extrabold">{name}</p>

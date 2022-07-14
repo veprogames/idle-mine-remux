@@ -24,7 +24,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"break_infinity.js": "^2.0.0",
-		"pixi.js": "^6.4.2"
+		"break_infinity.js": "^2.0.0"
 	}
 }
