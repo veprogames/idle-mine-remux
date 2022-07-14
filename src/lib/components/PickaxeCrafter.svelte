@@ -11,17 +11,17 @@ $: canCraft = $game.gems.amount.gte(gems);
 
 function craft(){
     if(!canCraft){
-        alert("Not enough Gems!");
+        console.log("Not enough Gems!");
         return;
     }
 
     const pick: Pickaxe = generatePickaxe(gems);
     if(pick.baseDamage.gt($game.pickaxe.baseDamage)){
         $game.pickaxe = pick;
-        alert(`Got a new Pickaxe! P: ${pick.pow} Q: ${pick.quality}`);
+        console.log(`Got a new Pickaxe! P: ${pick.pow} Q: ${pick.quality}`);
     }
     else{
-        alert(`Sorry, I crafted a dud! P: ${pick.pow} Q: ${pick.quality}`);
+        console.log(`Sorry, I crafted a dud! P: ${pick.pow} Q: ${pick.quality}`);
     }
     $game.gems.amount = $game.gems.amount.sub(gems);
 }
