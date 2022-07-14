@@ -79,6 +79,11 @@ export class Upgrade{
         return this.canAfford && this.level < this.maxLevel;
     }
 
+    /** Synonymous for `effect`, but easier to grasp in context */
+    get applied(){
+        return this.effect;
+    }
+
     buy(){
         if(this.canBuy){
             this.subPriceFromResource();
