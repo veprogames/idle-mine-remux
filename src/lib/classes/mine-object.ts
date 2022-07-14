@@ -9,12 +9,12 @@ export default class MineObject{
     def: Decimal
     value: Decimal
 
-    constructor(name: String, hp: Decimal, def: Decimal, value: Decimal){
+    constructor(name: String, hp: Decimal|number|string, def: Decimal|number|string, value: Decimal|number|string){
         this.name = name;
-        this.hp = hp;
+        this.hp = new Decimal(hp);
         this.maxHp = new Decimal(this.hp);
-        this.def = def;
-        this.value = value;
+        this.def = new Decimal(def);
+        this.value = new Decimal(value);
     }
 
     static clone(from: MineObject){

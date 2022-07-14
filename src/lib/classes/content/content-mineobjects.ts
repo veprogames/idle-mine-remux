@@ -13,8 +13,8 @@ export default class ContentMineObjects {
 
     constructor(){
         this.objects = {
-            0: new MineObject("Dirt", new Decimal(100), new Decimal(0), new Decimal(2)),
-            1: new MineObject("Paper", new Decimal(400), new Decimal(3), new Decimal(10))
+            0: new MineObject("Dirt", 100, 0, 2),
+            1: new MineObject("Paper", 400, 3, 10)
         };
 
         this.currentId = 0;
